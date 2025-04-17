@@ -9,7 +9,7 @@ Login page : Have two section. first contain email and password field for login.
 
 Home page : Contain input field and add to-do button at top.
             Have all to-do's of user.
-	    top right-side have log out button and user name. 
+	        top right-side have log out button and user name. 
 
 Features :
 1.User authentication
@@ -33,10 +33,10 @@ Authentication: JWT (JSON Web Tokens)
 Styling: Bootstrap
 
 Components:     1.register
-		2.login
-		3.home
+	        	2.login
+	        	3.home
  
 Pop up Modal: 	1.log out
-		2.delete to-do	
+	        	2.delete to-do	
 		
             
