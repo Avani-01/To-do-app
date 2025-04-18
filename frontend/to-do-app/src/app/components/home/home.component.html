@@ -1,21 +1,33 @@
 <div class="container-fluid home-container">
     <h1 class="text-center py-3">TO DO LIST</h1>
     <div class="col-12">
-        <form action="" class="d-flex justify-content-center">
+        <form (submit)="addNewTodo()"  class="d-flex justify-content-center">
            <div class="d-flex todo-input col-4">
-            <input type="text" class="form-control" name="todo" placeholder="Add to do here....">
-            <button class="btn btn-danger px-5 add-btn">ADD</button>
+            <input type="text" class="form-control" [(ngModel)]="newTitle" name="todo" placeholder="Add to do here....">
+            <button class="btn btn-danger px-5 add-btn" type="submit">ADD</button>
            </div>
         </form>
-        <p class="text-center py-2">Your to do's....</p>
+       <div *ngIf="todos.length > 0; else noTodos">
+         <p class="text-center py-2">Your to do's....</p>
         <div class="todo-container d-flex justify-content-center flex-wrap gap-md-4 gap-3 pt-4">
-           <div class="todo-items">dfghksjhe</div>
-           <div class="todo-items">erfjkuhlkfd</div>
-           <div class="todo-items">rfvgdhknjkfdjh</div>
+           <div class="todo-items" *ngFor="let todo of todos"  >
+             <div class="d-flex align-items-center gap-2">
+                <input type="checkbox" [(ngModel)]="todo.completed" (change)="toggleCompleted(todo)"  />
+                <span >
+                    {{ todo.title }}
+                </span>
+             </div>
+            <button class="btn trash-btn p-1" (click)="deleteOneTodo(todo._id!)">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+           </div>
         </div>
-        <!-- <div class="empty-todo text-center py-3">
+       </div>
+       <ng-template #noTodos>
+        <div class="empty-todo text-center py-3">
             <img src="/nodata-img.png" class="img-fluid" alt="">
             <p>  You have not add any to do.</p>
-        </div> -->
+        </div>
+    </ng-template>
     </div>
 </div>

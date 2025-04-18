@@ -25,11 +25,48 @@
             width: 260px;
             height: 140px;
             border-radius: 5px;
-            // border: 1px solid black;
+            position: relative;
+         
             background-color:cadetblue;
             display: flex;
             justify-content: center;
             align-items: center;
+            input[type="checkbox"] {
+                appearance: none;
+                -webkit-appearance: none;
+                width: 16px;
+                height: 16px;
+                border-radius: 2px;
+                position: relative;
+                cursor: pointer;
+                outline: none;
+                background-color: white;
+              }
+            
+              
+              input[type="checkbox"]:checked {
+                background-color: rgb(255, 255, 255);
+                border-color: rgb(255, 255, 255);
+              }
+            
+             
+              input[type="checkbox"]:checked::after {
+                content: "\2713";
+                color: black;
+                font-size: 14px;
+                position: absolute;
+                top: -2px;
+                left: 3px;
+                font-weight: 900;
+              }
+            .trash-btn{
+                position: absolute;
+                top: 0;
+                right: 0;
+                &:focus{
+                    box-shadow: none;
+                }
+            }
         }
     }
     .empty-todo{
@@ -38,4 +75,7 @@
             height: 150px;
         }
     }
+}
+.text-straick{
+    text-decoration: line-through !important;
 }
