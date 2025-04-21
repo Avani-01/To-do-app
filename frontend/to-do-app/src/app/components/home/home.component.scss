@@ -21,6 +21,9 @@
         }
     }
     .todo-container{
+        max-height: 390px;
+        overflow-y: scroll;
+        scrollbar-width: none;
         .todo-items{
             width: 260px;
             height: 140px;
@@ -78,4 +81,9 @@
 }
 .text-straick{
     text-decoration: line-through !important;
+}
+.btn{
+    &:focus{
+        box-shadow: none;
+    }
 }
