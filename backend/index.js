@@ -4,7 +4,7 @@ const connectDB = require('./database/db');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const authRouter = require("./routes/auth.route");
-const todoRouter = require("./routes/todo.route")
+const todoRouter = require("./routes/todo.route");
 const app = express()
 
 connectDB();
