@@ -11,8 +11,14 @@ export const routes: Routes = [
     {
         path:'register',
         component:RegisterComponent
-    }, {
+    }, 
+    {
         path:'home',
         component:HomeComponent
+    },
+    {
+        path:'',
+        component:LoginComponent,
+        pathMatch:"full"
     },
 ];

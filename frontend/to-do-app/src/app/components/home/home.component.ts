@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Todo, TodoService } from '../../service/todo.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TokenService } from '../../service/token.service';
+
 
 @Component({
   selector: 'app-home',
@@ -10,13 +13,23 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
+  username: string = '';
   todos: Todo[] = [];
   newTitle = '';
   todoIdToDelete: string | null = null;
   bgColors: string[] = ['#99aa38', '#fad2e1', '#9882ac', '#89c2d9', '#d4a373'];
-  constructor(private todoService: TodoService) {}
+  constructor(private todoService: TodoService,
+    private router : Router,
+    private tokenService: TokenService
+  ) {}
+  
 
   ngOnInit() {
+    if (this.tokenService.isTokenExpired()) {
+      this.tokenService.logout(); // Log out the user
+      this.router.navigate(['/login']); // Redirect to login page
+    }
+    this.username = localStorage.getItem('username') || '';
     this.fetchTodos();
   }
   
@@ -63,6 +76,15 @@ export class HomeComponent implements OnInit {
         console.error('Failed to delete todo:', err);
       }
     });
+  }
+
+  logoutUser() {
+    // Clear token and user info
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+
+    // Navigate to login page
+    this.router.navigate(['/login']);
   }
   
 }

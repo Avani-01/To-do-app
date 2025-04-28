@@ -30,7 +30,6 @@ export class RegisterComponent {
       email: this.email,
       password:this.password
     }
-    console.log(userData);
     this.authService.register(userData)
       .subscribe({
         next: (res) => {

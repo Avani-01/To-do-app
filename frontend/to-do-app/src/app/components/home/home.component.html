@@ -1,5 +1,7 @@
 <div class="container-fluid home-container">
     <h1 class="text-center py-3">TO DO LIST</h1>
+    <h2>Welcome, {{ username }}!</h2>
+    <button class="btn btn-outline-danger" (click)="logoutUser()">Logout</button>
     <div class="col-12">
         <form (submit)="addNewTodo()"  class="d-flex justify-content-center">
            <div class="d-flex todo-input col-4">

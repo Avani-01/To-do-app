@@ -1,18 +1,27 @@
 
 <div class="container-fluid login-container d-flex justify-content-center align-items-center">
     <div class="login p-4">
-        <form action="" class="d-flex flex-column gap-3">
+        <form (submit)="onSubmit(loginForm)" #loginForm="ngForm" class="d-flex flex-column gap-3">
             <h1 class="text-center">Login</h1>
             <div>
-                <label for="email" class="form-lable">Email</label>
-                <input type="text" name="email" id="email" class="form-control">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" [(ngModel)]="email" name="email" required email  pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$" #emailRef="ngModel" placeholder="Enter your emal">
+                <div class="err-msg" *ngIf="emailRef.invalid && emailRef.touched">
+                    <small *ngIf="emailRef.errors?.['required']">Email is required</small>
+                    <small *ngIf="emailRef.errors?.['email']">Enter a valid email</small>
+                    <small *ngIf="emailRef.errors?.['pattern']">Only Gmail addresses are allowed</small>
+                  </div>
             </div>
             <div>
-                <label for="password" class="form-lable">Password</label>
-                <input type="text" name="password" id="password" class="form-control">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" [(ngModel)]="password" name="password"  required minlength="3" #passwordRef="ngModel" placeholder="Enter your password">
+                <div class="err-msg" *ngIf="passwordRef.invalid && passwordRef.touched">
+                    <small *ngIf="passwordRef.errors?.['required']">Password is required</small>
+                    <small *ngIf="passwordRef.errors?.['minlength']">Minimum 3 characters</small>
+                  </div>
             </div>
-            <p>don't have an account ? <a href="">Register</a></p>
-            <button class="btn login-btn">Submit</button>
+            <p>don't have an account ? <a routerLink="/register">Register</a></p>
+            <button class="btn login-btn"  [disabled]="loginForm.invalid">Submit</button>
         </form>
     </div>
 </div>
